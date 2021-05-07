@@ -4,7 +4,7 @@ We have been building and using our own functional interfaces and abstractions.
 
 Java provides its own version of functional interfaces that are comparable to ours, in the `java.util.function` package.  The table below shows some commonly used ones:
 
-|CS2030S | java.util.function |
+|CS2030 | java.util.function |
 |--------|-------------------|
 |`BooleanCondition<T>::test` | `Predicate<T>::test` |
 |`Producer<T>::produce`      | `Supplier<T>::get`   |
@@ -14,13 +14,13 @@ Java provides its own version of functional interfaces that are comparable to ou
 
 Besides, some of the abstractions we have built have similar counterparts in Java as well:
 
-| CS2030S               | Java version      |
+| CS2030               | Java version      |
 |-----------------------|-------------------|
 |`Maybe<T>`             | `java.util.Optional<T>`      |
 |`Lazy<T>`              | N/A                          |
 |`InfiniteList<T>`      | `java.util.stream.Stream<T>` |
 
-There is a subtle and important difference between our `Maybe<T>` and `Optional<T>`, which we will explore in an upcoming unit.  We will focus this unit on `Stream` since the Java implementation of `stream is an infinite list with much more functionalities, some of which (such as parallel streams) are beyond what we can build ourselves in CS2030S.
+There is a subtle and important difference between our `Maybe<T>` and `Optional<T>`, which we will explore in an upcoming unit.  We will focus this unit on `Stream` since the Java implementation of `stream is an infinite list with much more functionalities, some of which (such as parallel streams) are beyond what we can build ourselves in CS2030.
 
 ## Building a Stream
 

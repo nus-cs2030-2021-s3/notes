@@ -1,8 +1,8 @@
-# CS2030/S Java Style Guide
+# CS2030 Java Style Guide
 
 ## Why Coding Style is Important
 
-One of the goals of CS2030/S is to move you away from the mindset that you are writing code that you will discard after it is done (e.g., in CS1101S missions) and you are writing code that noone else will read except you and your tutor.  CS2030/S prepares you to work in a software engineering teams in many ways, and one of the ways is to enforce a consistent coding style.
+One of the goals of CS2030 is to move you away from the mindset that you are writing code that you will discard after it is done (e.g., in CS1101S missions) and you are writing code that noone else will read except you and your tutor.  CS2030 prepares you to work in a software engineering teams in many ways, and one of the ways is to enforce a consistent coding style.
 
 If everyone on the team follows the same style, the intend of the programmer can become clear (e.g., is this a class or a field?), the code is more readable and less bug prone (e.g., the [Apple `goto fail` bug](https://www.wired.com/2014/02/gotofail/)).  Empirical studies support this:
 
@@ -13,7 +13,7 @@ If everyone on the team follows the same style, the intend of the programmer can
 
 Many major companies enforce coding styles, and some have published them.  For CS2030, we base our (simplified) coding style on [Google's Java Coding Style](https://google.github.io/styleguide/javaguide.html).  You should bookmark the link because you need to come back to it again and again.
 
-## CS2030/S Coding Style
+## CS2030 Coding Style
 
 1. No tab
 	Use only whitespace.  
@@ -236,7 +236,7 @@ To automatically check for style violation, we use a tool call [`checkstyle`](ht
 To run, 
 
 ```
-java -jar ~cs2030s/bin/checkstyle.jar -c ~cs2030s/bin/cs2030_checks.xml *.java 
+java -jar ~cs2030/bin/checkstyle.jar -c ~cs2030/bin/cs2030_checks.xml *.java 
 ```
 
 Hint: put the command into a `bash` script so that you do not need to type such a long string all the time.

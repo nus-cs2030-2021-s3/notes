@@ -24,7 +24,7 @@ Java programs, on the other hand, can be executed in two ways.
 
 - The Java program can also be interpreted by the Java interpreter.
 
-Since CS2030/S uses Java, let's look at the two approaches in more detail (without worrying about how to write a single line of Java first).
+Since CS2030 uses Java, let's look at the two approaches in more detail (without worrying about how to write a single line of Java first).
 
 ### Compiling and Running Java Programs
 
@@ -42,7 +42,7 @@ to invoke the JVM `java` and execute the bytecode contains in `Hello.class`.
 
 Beginners tend to confuse between `javac` and `java`, and whether to add the extension `.java` or `.class` when compiling and executing a Java program.  Do take note and refer back here if needed[^2].
 
-[^2]: To add to the confusion, Java 11 introduces a shortcut where we can run `java Hello.java` directly.  This command causes `Hello.java` to be compiled and executed in a single step.  We won't do this in CS2030/S (i) to avoid confusion and (ii) to show you the steps explicitly.
+[^2]: To add to the confusion, Java 11 introduces a shortcut where we can run `java Hello.java` directly.  This command causes `Hello.java` to be compiled and executed in a single step.  We won't do this in CS2030 (i) to avoid confusion and (ii) to show you the steps explicitly.
 
 ### Interpreting a Java program
 

@@ -2,7 +2,7 @@
 
 ## Why is documentation important
 
-One of the goals of CS2030S is to move you away from the mindset that you are writing code that you will discard after it is done (e.g., in CS1101S labs) and you are writing code that no one else will read except you.  CS2030S prepares you to work in software engineering teams in many ways, and one of the ways is to get you to document your code.
+One of the goals of CS2030 is to move you away from the mindset that you are writing code that you will discard after it is done (e.g., in CS1101S labs) and you are writing code that no one else will read except you.  CS2030 prepares you to work in software engineering teams in many ways, and one of the ways is to get you to document your code.
 
 `javadoc` is a tool used to document Java code.  It automatically generates HTML documentation from the comments in your code.  The [Java API](https://docs.oracle.com/en/java/javase/11/docs/api/index.html) that you have seen are generated from `javadoc`.
 

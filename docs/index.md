@@ -1,13 +1,11 @@
-# CS2030S Programming Methodology II
+# CS2030 Programming Methodology II
 
-#### AY 2020/21 Semester 2
+#### AY 2020/21 Special Semester 1
 
-This website hosts the lecture notes, lecture slides, and other written guides about CS2030S.  You can explore the links on the menu on the left, or search for keywords in the search bar above.
+This website hosts the lecture notes, lecture slides, and other written guides about CS2030.  You can explore the links on the menu on the left, or search for keywords in the search bar above.
 
 #### Other Critical Web Resources
 
-- [Piazza](https://piazza.com/class/kjez2jtso0033l) for Q&A and discussions
+- [Piazza](https://piazza.com/class/kodtrfhxmuz62m) for Q&A and discussions
 
-- [LumiNUS](https://luminus.nus.edu.sg/modules/c8378b00-daa4-430e-b49f-22f6509a1287) for all other information (administration, logistic) and tools (surveys, grades).
-
-- [GitHub](https://www.github.com/) (under your own account) for accessing feedback of your labs.
+- [LumiNUS](https://luminus.nus.edu.sg/modules/13694aa8-f0be-4fb3-be02-ee542a4f1575) for all other information (administration, logistic) and tools (surveys, grades).

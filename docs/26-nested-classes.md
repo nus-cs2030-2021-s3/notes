@@ -22,7 +22,7 @@ Since the nested class can access the private fields of the container class, we 
 
 Take the `HashMap<K,V>` class for instance.  [The implementation of `HashMap<K,V>`](https://github.com/openjdk-mirror/jdk7u-jdk/blob/master/src/share/classes/java/util/HashMap.java) contains several nested classes, including `HashIterator`, which implement an `Iterator<E>` interface for iterating through the key and value pairs in the map, and an `Entry<K,V>` class, which encapsulates a key-value pair in the map.  Some of these classes are declared `private` if they are only used within the `HashMap<K,V>` class.
 
-!!! note "Example from CS2030S This Semester"
+!!! note "Example from CS2030 This Semester"
 
     We can take another example from your labs on shop simulation.  In one of many possible designs, the subclasses of `Event`: `ArrivalEvent`, `DepartureEvent`, etc. are not used anywhere outside of `ShopSimulation`.  They can be safely encapsulated within `ShopSimulation` as inner classes, so that these classes can access the fields within the `ShopSimulation` class, simplifying their implementation.
 

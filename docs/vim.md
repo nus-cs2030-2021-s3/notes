@@ -1,4 +1,4 @@
-## CS2030S `vim` Guide
+## CS2030 `vim` Guide
 
 This article is adapted from the notes of the [Unix@Home Workshop](https://nus-unix-workshop.github.io/2021-s1) 
 held in August 2020.  
@@ -111,7 +111,7 @@ Besides enabling you to type as fast as you think with as few hand movements as 
 
 The only downside to using `vim` is that it is terminal-based (some considers it ugly) and the steep learning curve.  But, in our experience, students will build up their muscle memory and are comfortable with `vim` after 2-3 weeks of usage.
 
-For CS2030S, there is another practical reason to learn and gain familiarity with `vim`.  The practical exams are conducted in a sandboxed environment, which you can only access through `ssh` via a terminal.  You only have a few choices (`emacs`, `nano`, `vim`) and `vim` is the only reasonable choice. 
+For CS2030, there is another practical reason to learn and gain familiarity with `vim`.  The practical exams are conducted in a sandboxed environment, which you can only access through `ssh` via a terminal.  You only have a few choices (`emacs`, `nano`, `vim`) and `vim` is the only reasonable choice. 
 
 [^3]: The book _Practical Vim_ by Drew Neil has the subtitle "Edit text at the speed of thought".
 
@@ -124,11 +124,11 @@ For `vim`, the `rc` file is called `.vimrc`.  The `.` in the front of the file n
 $ ls -a
 ```
 
-We have created a `.vimrc` file, with CS2030S defaults, for your use.  This is the basis which you can built on. 
+We have created a `.vimrc` file, with CS2030 defaults, for your use.  This is the basis which you can built on. 
 
 To copy this file to your home directory on the PE nodes,
 ```
-$ cp ~cs2030s/.vimrc ~
+$ cp ~cs2030/.vimrc ~
 ```
 
 The default `.vimrc` expects a backup directory at location `~/.backup`.  This is where a previous copy of your file will be saved as backup everytime you edit a file.  This feature has saved me countless of time.  You can create a directory called `.backup` at your home directory with:

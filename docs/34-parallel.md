@@ -11,7 +11,7 @@ After attending this lecture, students should:
 
 ## Parallel and Concurrent Programming
 
-So far, the programs that we have written in CS2030S run _sequentially_.  What this means is that at any one time, there is only one instruction of the program running on a processor.
+So far, the programs that we have written in CS2030 run _sequentially_.  What this means is that at any one time, there is only one instruction of the program running on a processor.
 
 ### What is concurrency?
 
@@ -31,7 +31,7 @@ Modern computers have more than one core/processor[^1].  As such, the line betwe
 
 ### Parallel computing
 
-Parallel computing is one of the major topics in computer science.  One can teach a whole module (or a focus area) on this topic alone.  The goal of this lecture is not to cover it in-depth but is to expose students in CS2030S to the concept of parallel computing in relation to the Stream abstraction in Java.
+Parallel computing is one of the major topics in computer science.  One can teach a whole module (or a focus area) on this topic alone.  The goal of this lecture is not to cover it in-depth but is to expose students in CS2030 to the concept of parallel computing in relation to the Stream abstraction in Java.
 
 ## Parallel Stream 
 

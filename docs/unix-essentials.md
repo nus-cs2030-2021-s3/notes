@@ -1,7 +1,7 @@
 # Unix CLI: The Essentials
 
 This article is adapted from the notes of the [Unix@Home Workshop](https://nus-unix-workshop.github.io/2021-s1) 
-held in August 2020.  It contains the essential knowledge that a CS2030S students need to survive using the PE nodes to do the labs (and to use a Unix CLI in general).
+held in August 2020.  It contains the essential knowledge that a CS2030 students need to survive using the PE nodes to do the labs (and to use a Unix CLI in general).
 
 After following this article, students should be able to:
 

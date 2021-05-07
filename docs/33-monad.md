@@ -179,7 +179,7 @@ A functor needs to adhere to two laws:
 - preserving identity: `functor.map(x -> x)` is the same as `functor`
 - preserving composition: `functor.map(x -> f(x)).map(x -> g(x))` is the same as `functor.map(x -> g(f(x))`. 
 
-Our classes from `cs2030s.fp`, `Lazy<T>`, `Maybe<T>`, and `InfiniteList<T>` are functors as well.
+Our classes from `cs2030.fp`, `Lazy<T>`, `Maybe<T>`, and `InfiniteList<T>` are functors as well.
 
 ## Monads and Functors in Other Languages
 

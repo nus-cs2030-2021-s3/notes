@@ -156,7 +156,7 @@ CompletableFuture.<Integer>supplyAsync(() -> null)
   .join();
 ```
 
-Suppose we want to continue chaining our tasks despite exceptions.  We can use the `handle` method, to handle the exception.  The `handle` method takes in a `BiFunction` (similar to `cs2030s.fp.Combiner`).  The first parameter to the `BiFunction` is the value, the second is the exception, the third is the return value.
+Suppose we want to continue chaining our tasks despite exceptions.  We can use the `handle` method, to handle the exception.  The `handle` method takes in a `BiFunction` (similar to `cs2030.fp.Combiner`).  The first parameter to the `BiFunction` is the value, the second is the exception, the third is the return value.
 
 Only one of the first two parameters is not `null`.  If the value is `null`, this means that an exception has been thrown.  Otherwise, the exception is `null`[^2].    
 

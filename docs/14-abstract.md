@@ -178,7 +178,7 @@ class Shape {
 
 This is not ideal.  It is easy for someone to inherit from `Shape`, but forget to override `getArea()`.  If this happens, then the subclass will have an area of 0.  Bugs ensue.
 
-As we usually do in CS2030S, we want to exploit programming language constructs and the compiler to check and catch such errors for us.
+As we usually do in CS2030, we want to exploit programming language constructs and the compiler to check and catch such errors for us.
 
 ## Abstract Methods and Classes
 

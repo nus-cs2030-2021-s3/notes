@@ -1,5 +1,5 @@
+This set of notes is based on A/Prof. Wei Tsang's notes found [here](https://nus-cs2030s.github.io/2021-s2/). 
 # References
-
 In preparing this set of notes, I refer heavily to the following.
 
 ## Web Resources

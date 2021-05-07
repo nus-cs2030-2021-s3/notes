@@ -2,24 +2,24 @@
 
 ## Learning Outcomes
 
-This unit provides an overview of the aims of CS2030/S and how the key concepts covered in CS2030/S are related to each other.
+This unit provides an overview of the aims of CS2030 and how the key concepts covered in CS2030 are related to each other.
 
 ## What is This Module About?
 
-CS2030/S is designed for students who have gone through a typical basic programming module module and have learned about problem solving with simple programming constructs such as loops, conditions, and functions.  In a typical introductory programming module, such as CS1010 and its variants at NUS, students tend to write small programs (in the order of tens or hundreds of lines of code) to solve a programming homework problem, work alone on their code, and move on to solve the next problem once the homework is done.
+CS2030 is designed for students who have gone through a typical basic programming module module and have learned about problem solving with simple programming constructs such as loops, conditions, and functions.  In a typical introductory programming module, such as CS1010 and its variants at NUS, students tend to write small programs (in the order of tens or hundreds of lines of code) to solve a programming homework problem, work alone on their code, and move on to solve the next problem once the homework is done.
 
-The first aim of CS2030/S is to change the students' mindset and to make them learn to write software that will continue to evolve as software requirements change, and to write software that will be read and modified by other programmers (including their future selves).
+The first aim of CS2030 is to change the students' mindset and to make them learn to write software that will continue to evolve as software requirements change, and to write software that will be read and modified by other programmers (including their future selves).
 
-The second aim of CS2030/S is to level-up the complexity of programs that the students write, from order of hundreds of lines to thousands of lines.  CS2030/S bridges the
+The second aim of CS2030 is to level-up the complexity of programs that the students write, from order of hundreds of lines to thousands of lines.  CS2030 bridges the
 students between writing toy programs to solve specific problem in CS1010 and writing larger real-world software in their later modules, such as CS2103 Software Engineering.
 
-A programming language is the medium in which programmers can express their intention and construct software, and thus is critical to supporting the aims above.  With the appropriate features and tools, one can tame the complexity of software, make the code written friendlier to other programmers, and easier to evolve.  The third aim of CS2030/S is thus to expand the students' mind on different ways one can construct software and the principles behind some of the programming language constructs.  In particular, CS2030/S focuses on objects, types, and functions, as three key constructs towards building programmer-friendly software.  It covers both object-oriented and functional paradigms as two different approaches to construct software, with a strong emphasis on type safety.
+A programming language is the medium in which programmers can express their intention and construct software, and thus is critical to supporting the aims above.  With the appropriate features and tools, one can tame the complexity of software, make the code written friendlier to other programmers, and easier to evolve.  The third aim of CS2030 is thus to expand the students' mind on different ways one can construct software and the principles behind some of the programming language constructs.  In particular, CS2030 focuses on objects, types, and functions, as three key constructs towards building programmer-friendly software.  It covers both object-oriented and functional paradigms as two different approaches to construct software, with a strong emphasis on type safety.
 
-The final aim of CS2030/S is to introduce students to programming language concepts, to bridge them from introductory programming to advanced modules such as programming language design and implementations.  Part of CS2030/S introduces students to the design decisions behind some of the constraints and the workings behind the programming language compilation and execution, giving them a glimpse inside the programming system that so far has been mostly treated as a black box in introductory modules.
+The final aim of CS2030 is to introduce students to programming language concepts, to bridge them from introductory programming to advanced modules such as programming language design and implementations.  Part of CS2030 introduces students to the design decisions behind some of the constraints and the workings behind the programming language compilation and execution, giving them a glimpse inside the programming system that so far has been mostly treated as a black box in introductory modules.
 
 ## The Choice of Java
 
-We decided to use one programming language throughout the module.  This decision means that we need to pick a language which is strongly typed with static typing, and supports both object-oriented and functional programming.  Considering multiple factors, we decided to choose Java for CS2030/S, for its popularity, syntax familiarity, and smoother transitions to later modules in the NUS computing curriculum.
+We decided to use one programming language throughout the module.  This decision means that we need to pick a language which is strongly typed with static typing, and supports both object-oriented and functional programming.  Considering multiple factors, we decided to choose Java for CS2030, for its popularity, syntax familiarity, and smoother transitions to later modules in the NUS computing curriculum.
 
 While Java is definitely not the most elegant programming language when expressing programs in functional style, we hope that students can still learn the principles of functional programming and apply it in other programming languages.  This choice is a trade-off between having to switch to a different language in the middle of a module.  
 
@@ -29,11 +29,11 @@ This is not a module on Java programming.  We will not comprehensively cover Jav
 
 This is not a module on software engineering either.  Software engineering is a broad discipline on its own and deserves another module.  Rather, this module is about the programming principles and constructs on top of which programmers can design better software.  To motivate the importance of these principles and constructs and see how they can be used, we will inevitably cover some of the software engineering design principles, such as the Liskov's Substitution Principle (the L in SOLID), Tell-Don't-Ask, Composition over Inheritance, etc.  But we will not comprehensively cover object-oriented design or software design in general (e.g., we will not cover S,O,I,D in SOLID).
 
-Finally, CS2030/S is not a module that focuses on computational efficiency.  We have CS2040/S for that.  In CS2030/S, although reducing computational cost still plays a role, this is not the only cost that matters.  CS2030/S is also concerned with the human cost of debugging or maintaining software.  In striving for simpler software that is easier to maintain and extend, we may have to sacrifice computational efficiency.
+Finally, CS2030 is not a module that focuses on computational efficiency.  We have CS2040/S for that.  In CS2030, although reducing computational cost still plays a role, this is not the only cost that matters.  CS2030 is also concerned with the human cost of debugging or maintaining software.  In striving for simpler software that is easier to maintain and extend, we may have to sacrifice computational efficiency.
 
 ## Taming Complexity in Software Development
 
-An underlying theme of CS2030/S is taming complexity in software development.  There are objective metrics with which one can measure the complexity of software, but here, we will loosely define complexity as anything that increases the likelihood of bugs in a program.
+An underlying theme of CS2030 is taming complexity in software development.  There are objective metrics with which one can measure the complexity of software, but here, we will loosely define complexity as anything that increases the likelihood of bugs in a program.
 
 Let's start by considering a simplified view of what a software program is.  One can view a software program as a collection of data variables and instructions on how to modify these variables.  A program is generally written to meet a given requirement: given one or more input variables, the program should perform the computation to produce the output variables, in a way that meets the requirement.  Often, the program stores information in the intermediate variables while performing the computation.
 
@@ -59,13 +59,13 @@ If you are taught properly in your introductory programming modules, you should 
 
 * Use a coding convention: Adhering to a coding convention helps improves code readability, reducing the cognitive barrier when one programmer reads another programmer's code and allowing the reader to understand the code more easily and thoroughly.
 
-CS2030/S will continue to enforce these good programming practices.
+CS2030 will continue to enforce these good programming practices.
 
 ### Functions
 
 You should also be taught to always break you code down into functions, each one performs a simple, specific, task.  The functions can then be composed to solve larger and more complex tasks.  Functions are an important programming structure in taming code complexity, it allows programmers to (i) compartmentalize computation and its effects, reducing the amount of interactions to a few well defined ones (through arguments and return values); (ii) hide the implementation details so that they can be changed later without affecting other parts of the code; (iii) reuse computations and thus write code that is more succinct and easier to understand/change.
 
-In CS2030/S, you will not only continue to break your computation into functions, but we will kick it up several notches.  A major part of CS2030/S is to introduce you to more programming paradigms and language tools that allow you to compartmentalize computations, hide details, and reduce repetition.
+In CS2030, you will not only continue to break your computation into functions, but we will kick it up several notches.  A major part of CS2030 is to introduce you to more programming paradigms and language tools that allow you to compartmentalize computations, hide details, and reduce repetition.
 
 ### The Abstraction Principle
 
@@ -75,18 +75,18 @@ The last point above about why it is important to code in small, reusable functi
 
 > "Each significant piece of functionality in a program should be implemented in just one place in the source code. Where similar functions are carried out by distinct pieces of code, it is generally beneficial to combine them into one by abstracting out the varying parts."
 
-This principle is something that we will visit over and over again in CS2030/S, applying it to different varying parts of a program.
-In the case of functions, the "varying parts" are the values on which we wish to perform the computation on.  We will also apply this principle to (i) types, abstracting them out as parameterized types or subtypes, and (ii) to sub-computation, abstracting them out as first-class functions.  These concepts: generics, subtypes, first-class functions, underlies most of the content of CS2030/S.
+This principle is something that we will visit over and over again in CS2030, applying it to different varying parts of a program.
+In the case of functions, the "varying parts" are the values on which we wish to perform the computation on.  We will also apply this principle to (i) types, abstracting them out as parameterized types or subtypes, and (ii) to sub-computation, abstracting them out as first-class functions.  These concepts: generics, subtypes, first-class functions, underlies most of the content of CS2030.
 
 ### Erecting an Abstraction Barrier
 
 Another important strategy for taming complexity is the _abstraction barrier_.  Let's separate the role of a programmer into two, in the context of writing functions: the _implementer_, who implements the function, and a _client_, who calls the function.  The implementer should compartmentalize the internal variables and the implementation of the function, hiding them behind the abstraction barrier, exposing the parameters and return values as the only communication gateways across the barrier.  
 
-The abstraction barrier is something that we will refer to repeatedly in CS2030/S as well.  We will see how we maintain this barrier not only in the context of functions, but also variables and computations on these variables together, by encapsulating them as _objects_, and hiding details from the client through _access modifiers_.  These ideas form two of the core principles of _object-oriented programming_: _encapsulation_ and _abstraction_.  
+The abstraction barrier is something that we will refer to repeatedly in CS2030 as well.  We will see how we maintain this barrier not only in the context of functions, but also variables and computations on these variables together, by encapsulating them as _objects_, and hiding details from the client through _access modifiers_.  These ideas form two of the core principles of _object-oriented programming_: _encapsulation_ and _abstraction_.  
 
 ### Code for Change
 
-The abstraction barrier, if erected and maintained properly, reduces code complexity.  It, however, also reduces the flexibility as the software evolves.  If the client wishes to modify the computation protected by the abstraction barrier, it will need the help of the implementer.  In CS2030/S, we will see two ways we can modify the computation behind the abstraction barrier, _without changing the code behind the barrier_.  
+The abstraction barrier, if erected and maintained properly, reduces code complexity.  It, however, also reduces the flexibility as the software evolves.  If the client wishes to modify the computation protected by the abstraction barrier, it will need the help of the implementer.  In CS2030, we will see two ways we can modify the computation behind the abstraction barrier, _without changing the code behind the barrier_.  
 
 First, we will introduce the concept of _inheritance_ and _polymorphism_, the other two core principles of object-oriented programming.  These object-oriented mechanisms allow programmers to easily extend or modify the behavior of existing code.  
 
@@ -98,10 +98,10 @@ Allowing a programmer to change the behavior of the existing code without changi
 
 A type system is also an important tools to reduce the complexity of software development.  By constraining the interactions among the variables, expressions, functions, it reduces the possible interdependence between these programming constructs.  Furthermore, any attempt by programmers to break the constraint can be caught automatically.  By utilizing the type system properly, we can detect potential bugs before it manifests itself.
 
-A reason CS2030/S chooses to use Java is due to its type system.  CS2030/S will introduce the concept of types, subtypes, compile-time vs. run-time types, variants of types, parameterized types, and type inferences, in the context of Java.  We will see how we can define our own types (using _classes_ and _interfaces_) and define relationships between them.  We will see how we can define parameterized types and generic functions that takes in types as parameters.  These concepts are applicable to many other programming languages.
+A reason CS2030 chooses to use Java is due to its type system.  CS2030 will introduce the concept of types, subtypes, compile-time vs. run-time types, variants of types, parameterized types, and type inferences, in the context of Java.  We will see how we can define our own types (using _classes_ and _interfaces_) and define relationships between them.  We will see how we can define parameterized types and generic functions that takes in types as parameters.  These concepts are applicable to many other programming languages.
 
 ### Eliminating Side Effects
 
-We have discussed how functions can compartmentalize computations and isolate its complexity to within its body.  For this approach to be effective, the function must not have any side effect -- such as updating a variable that is not within the function.  Such functions, called _pure functions_, is one of the key principles of the functional programming paradigm, and is something that we will explore to kick off the section on functional paradigm in CS2030/S.
+We have discussed how functions can compartmentalize computations and isolate its complexity to within its body.  For this approach to be effective, the function must not have any side effect -- such as updating a variable that is not within the function.  Such functions, called _pure functions_, is one of the key principles of the functional programming paradigm, and is something that we will explore to kick off the section on functional paradigm in CS2030.
 
-A related idea in object-oriented programming we will cover in CS2030/S is _immutability_ -- once we create an object, the object cannot be changed.  In order to update an object, we need to create a new one.  With immutability and pure functions, we can guarantee that the same function invoked on the same objects will always return the same value.  This certainty can help in understanding and reasoning about the code behavior.
+A related idea in object-oriented programming we will cover in CS2030 is _immutability_ -- once we create an object, the object cannot be changed.  In order to update an object, we need to create a new one.  With immutability and pure functions, we can guarantee that the same function invoked on the same objects will always return the same value.  This certainty can help in understanding and reasoning about the code behavior.

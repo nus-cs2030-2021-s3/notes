@@ -1,8 +1,8 @@
-# The CS2030S Programming Environment
+# The CS2030 Programming Environment
 
 ## Java version
 
-Java is a language that continues to evolve.  A new version is released every six months, and by the time we are done with CS2030S this semester, we will have Java 16.  For CS2030S, we will _only_ use Java 11, the most recent version with long-term support.
+Java is a language that continues to evolve.  A new version is released every six months, and by the time we are done with CS2030 this semester, we will have Java 16.  For CS2030, we will _only_ use Java 11, the most recent version with long-term support.
 
 ## Programming Servers
 

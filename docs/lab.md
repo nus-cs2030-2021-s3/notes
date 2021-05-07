@@ -1,8 +1,8 @@
-# CS2030S Lab Guide
+# CS2030 Lab Guide
 
 ## GitHub Classroom
 
-We will use GitHub Classroom for our lab release and submission for CS2030S.
+We will use GitHub Classroom for our lab release and submission for CS2030.
 
 Here are what you need to do for every lab assignment:
 
@@ -23,7 +23,7 @@ A repo will be created automatically for you.
 
 For your first-ever lab, you will need to create a configuration file (see the "One-Time Setup" section below). After that, proceed as per normal below.
 
-Run the command `~cs2030s/get-labXX` (where X is the lab number) to clone a copy of the lab on your home directory.  You will see a new lab directory named something like `labX-username` created, with the skeleton files and questions inside.
+Run the command `~cs2030/get-labXX` (where X is the lab number) to clone a copy of the lab on your home directory.  You will see a new lab directory named something like `labX-username` created, with the skeleton files and questions inside.
 
 You can edit the code, compile, test, etc, on the PE hosts.
 
@@ -32,7 +32,7 @@ You can edit the code, compile, test, etc, on the PE hosts.
 
 ### 3. Submit a Copy 
 
-When you are ready to submit, run `~cs2030s/submit-labX` (where X is the lab number).  This will submit a copy to GitHub.  You can submit multiple times, but only the last copy will be graded.
+When you are ready to submit, run `~cs2030/submit-labX` (where X is the lab number).  This will submit a copy to GitHub.  You can submit multiple times, but only the last copy will be graded.
 
 !!! warning "WARNING"
     Do not use `git push` or other `git` commands to submit your code to GitHub.

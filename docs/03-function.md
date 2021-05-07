@@ -24,7 +24,7 @@ Functions help us deal with complexity in a few ways:
 
 We can imagine an _abstraction barrier_ between the code that calls a function and the code that defines the function body.  Above the barrier, the concern is about using the function to perform a task, while below the barrier, the concern is about _how_ to perform the task.  
 
-While many of you are used to writing a program solo, in practice, you rarely write a program with contributions from only a single person.  The abstraction barrier separates the role of the programmer into two: (i) an _implementer_, who provides the implementation of the function, and (ii) a _client_, which uses the function to perform the task.  Part of the aim in CS2030/S is to switch your mindset into thinking in terms of these two roles.  
+While many of you are used to writing a program solo, in practice, you rarely write a program with contributions from only a single person.  The abstraction barrier separates the role of the programmer into two: (i) an _implementer_, who provides the implementation of the function, and (ii) a _client_, which uses the function to perform the task.  Part of the aim in CS2030 is to switch your mindset into thinking in terms of these two roles.  
 
 The abstraction barrier thus enforces a _separation of concerns_ between the two roles.
 
