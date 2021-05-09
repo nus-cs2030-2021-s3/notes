@@ -1,6 +1,6 @@
 # CS2030 Programming Methodology II
 
-#### AY 2020/21 Special Semester 1
+#### AY 2020/21 Special Term Part 1
 
 This website hosts the lecture notes, lecture slides, and other written guides about CS2030.  You can explore the links on the menu on the left, or search for keywords in the search bar above.
 
