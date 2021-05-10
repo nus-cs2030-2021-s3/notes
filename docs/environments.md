@@ -10,7 +10,7 @@ The school has provided a list of computing servers for you to use.  You can acc
 
 For this semester, the two servers `pe115` and `pe116` are not available.
 
-You can choose which of the eight hosts to use.  You share the same home directory across all the hosts (this home directory, however, is different from that of `sunfire`).  If you notice that one host is crowded, you can use another host to spread out the load.
+You can choose which of the eight hosts to use.  You share the same home directory across all the hosts (this home directory, however, is different from that of `stu`).  If you notice that one host is crowded, you can use another host to spread out the load.
 
 While you can complete the programming assignments on your computers, the practical exams are done in a controlled environment using servers similar to the PE hosts.  It is therefore advisable for you to familiarize yourself with accessing the PE servers via `ssh` and edit your program with either `vim` or `emacs` (`vim` is recommended and supported).
 
@@ -35,9 +35,9 @@ Replace `<hostname>` with the host you want to log into and `<username>` with yo
 
 For instance, I would do:
 ```
-ssh ooiwt@sunfire.comp.nus.edu.sg
+ssh boyd@stu.comp.nus.edu.sg
 ```
-to log into `sunfire`.
+to log into `stu`.
 
 After the command above, following the instructions on the screen.  The first time you ever connect to a host, you will be warned that you are connecting to a previously unknown host.  Say `yes`, and you will be prompted with your password for that host.
 
@@ -45,22 +45,22 @@ After the command above, following the instructions on the screen.  The first ti
 
 The PE hosts can only be accessed from within the School of Computing networks.  To complete the lab at home and to complete the two practical assessments from home, you need to access the PE hosts from outside the SoC networks.  
 
-There are several ways to do this, the simplest way is to tunnel through `sunfire`, and this is the recommended method, as no extra software is required.
+There are several ways to do this, the simplest way is to tunnel through `stu`, and this is the recommended method, as no extra software is required.
 
-### Option 1: Tunneling through Sunfire (Recommended for those in Singapore)
+### Option 1: Tunneling through Stu (Recommended for those in Singapore)
 
-SoC's Sunfire (`sunfire.comp.nus.edu.sg`) is configured to allow your connection if it's originating from a local telco (See [more details here](https://dochub.comp.nus.edu.sg/cf/guides/unix/soc_unix_pass_your_direct_access_to_soc_unix_servers)).
+SoC's Stu (`stu.comp.nus.edu.sg`) is configured to allow your connection if it's originating from a local telco (See [more details here](https://dochub.comp.nus.edu.sg/cf/guides/unix/soc_unix_pass_your_direct_access_to_soc_unix_servers)).
 
-Since `sunfire` is within the SoC network, you can log into `sunfire` first, then from `sunfire`, log into one of the PE nodes from `sunfire`.  These two steps can be done with one command:
+Since `stu` is within the SoC network, you can log into `stu` first, then from `stu`, log into one of the PE nodes from `stu`.  These two steps can be done with one command:
 ```
-ssh -t <username1>@sunfire.comp.nus.edu.sg ssh <username2>@pe1xx.comp.nus.edu.sg
+ssh -t <username1>@stu.comp.nus.edu.sg ssh <username2>@pe1xx.comp.nus.edu.sg
 ```
 
-Note that in non-exam scenarios, `username1` and `username2` are both your SoC Unix username.  You will be prompted for password twice.  The first prompt will be for your password to `sunfire`, and the second, to `pe1xx`.
+Note that in non-exam scenarios, `username1` and `username2` are both your SoC Unix username.  You will be prompted for password twice.  The first prompt will be for your password to `stu`, and the second, to `pe1xx`.
 
 For practical exams, you will be issued a special exam account to log into the PE hosts.  In this case, `username1` will be your SoC Unix username and `username2` will be your special exam account.
 
-Students not in Singapore will need to access `sunfire` via SoC VPN.  In which case, Option 2 would be better.
+Students not in Singapore will need to access `stu` via SoC VPN.  In which case, Option 2 would be better.
 
 ### Option 2: Using SoC VPN (Recommended only for not in Singapore)
 
@@ -72,7 +72,7 @@ To set up the SOC Virtual Private Network (VPN), see [instruction here](https://
 
 !!! warning "Windows 10 Users: FortiClient from Windows Store"
 
-    Students have reported that running FortiClient downloaded from the Windows Store does not allow one to `ssh` from WSL to `sunfire` as expected.  Therefore, Windows 10 users should download and install FortiClient VPN directly from [FortiClient's website](https://forticlient.com/downloads).
+    Students have reported that running FortiClient downloaded from the Windows Store does not allow one to `ssh` from WSL to `stu` as expected.  Therefore, Windows 10 users should download and install FortiClient VPN directly from [FortiClient's website](https://forticlient.com/downloads).
 
 Once you are connected to SoC VPN, you can run
 ```
@@ -118,13 +118,13 @@ of your SoC Unix account which you have created here: https://mysoc.nus.edu.sg/~
 
     If you have lost your password, go here: https://mysoc.nus.edu.sg/~myacct/iforgot.cgi
 
-4. `ssh: connect to host sunfire.comp.nus.edu.sg port 22: Operation timed out`
+4. `ssh: connect to host stu.comp.nus.edu.sg port 22: Operation timed out`
 
-	It means that you failed to connect to `sunfire` via `ssh`.  There could be two reasons for this: (i) `sunfire` or its ssh service is down; (ii) you are connecting via a network where `sunfire` is not accessible (such as outside Singapore).  
+	It means that you failed to connect to `stu` via `ssh`.  There could be two reasons for this: (i) `stu` or its ssh service is down; (ii) you are connecting via a network where `stu` is not accessible (such as outside Singapore).  
 
 	The likelihood of (i) is small.  The more likely scenario is (ii), in which case, you should be able to solve it by connecting to SoC VPN.
 
-5. `Could not chdir to home directory /home/o/ooiwt: Permission denied`
+5. `Could not chdir to home directory /home/o/boyd: Permission denied`
 
     This error means that you have successfully connected to the PE hosts, but you have no access to your home directory.
 

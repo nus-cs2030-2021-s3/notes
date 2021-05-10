@@ -236,7 +236,7 @@ To automatically check for style violation, we use a tool call [`checkstyle`](ht
 To run, 
 
 ```
-java -jar ~cs2030/bin/checkstyle.jar -c ~cs2030/bin/cs2030_checks.xml *.java 
+java -jar ~cs2030s/bin/checkstyle.jar -c ~cs2030s/bin/cs2030_checks.xml *.java 
 ```
 
 Hint: put the command into a `bash` script so that you do not need to type such a long string all the time.

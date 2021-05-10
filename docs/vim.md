@@ -128,7 +128,7 @@ We have created a `.vimrc` file, with CS2030 defaults, for your use.  This is th
 
 To copy this file to your home directory on the PE nodes,
 ```
-$ cp ~cs2030/.vimrc ~
+$ cp ~cs2030s/.vimrc ~
 ```
 
 The default `.vimrc` expects a backup directory at location `~/.backup`.  This is where a previous copy of your file will be saved as backup everytime you edit a file.  This feature has saved me countless of time.  You can create a directory called `.backup` at your home directory with:
