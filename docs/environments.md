@@ -43,7 +43,7 @@ After the command above, following the instructions on the screen.  The first ti
 
 ## Accessing The PE Hosts from Outside SoC
 
-The PE hosts can only be accessed from within the School of Computing networks.  To complete the lab at home and to complete the two practical assessments from home, you need to access the PE hosts from outside the SoC networks.  
+The PE hosts can only be accessed from within the School of Computing networks.  To complete the lab at home and to complete the practical assessment from home, you need to access the PE hosts from outside the SoC networks.  
 
 There are several ways to do this, the simplest way is to tunnel through `stu`, and this is the recommended method, as no extra software is required.
 
