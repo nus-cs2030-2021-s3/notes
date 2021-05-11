@@ -49,7 +49,7 @@ There are several ways to do this, the simplest way is to tunnel through `stu`, 
 
 ### Option 1: Tunneling through Stu (Recommended for those in Singapore)
 
-SoC's Stu (`stu.comp.nus.edu.sg`) is configured to allow your connection if it's originating from a local telco (See [more details here](https://dochub.comp.nus.edu.sg/cf/guides/unix/soc_unix_pass_your_direct_access_to_soc_unix_servers)).
+SoC's Stu (`stu.comp.nus.edu.sg`) is configured to allow your connection if it's originating from a local telco.
 
 Since `stu` is within the SoC network, you can log into `stu` first, then from `stu`, log into one of the PE nodes from `stu`.  These two steps can be done with one command:
 ```
