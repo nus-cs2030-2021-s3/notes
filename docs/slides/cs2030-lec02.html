@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030 AY20/21 Special Term Part 1</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030
+
+### Programming Methodology II
+---
+class: middle, center
+
+## Lecture 2
+
+### 12 May 2021
+---
+class: middle,wide
+
+# Announcements
+
+- Piazza forum (please use it)
+
+- Lab and Recitation Groups
+
+- Instructions for getting started using the PE
+
+
+---
+class: middle,wide
+
+### Our `Circle` class encapsulates our data (`fields`) and functions (`methods`).
+.small[
+```Java
+class Circle {
+  double x;
+  double y;
+  double r;
+
+  double getArea() {
+    return 3.141592653589793 * r * r;
+  }
+}
+```
+]
+
+---
+class: middle
+
+## Recall our Abstraction Barrier...
+
+---
+class: middle
+
+![figures](figures/cs2030-lec02/cs2030-lec02.001.png)
+
+---
+class: middle
+
+![figures](figures/cs2030-lec02/cs2030-lec02.002.png)
+
+---
+class: middle,wide
+### Access modifiers (`public` and `private`)
+.small[
+```Java
+class Circle {
+	private double x;
+	private double y;
+	private double r;
+  
+	public double getArea() {
+	  return 3.141592653589793 * r * r;
+	}
+}
+  ```
+]
+---
+class: middle,wide
+### _Constructors_ and the keyword `this`.
+.small[
+```Java
+class Circle {
+	private double x;
+	private double y;
+	private double r;
+  
+	public Circle(double x, double y, double r) {
+		this.x = x;
+		this.y = y;
+		this.r = r;
+	}
+}
+  ```
+]
+---
+class: middle,wide
+### How do we instantiate the `Circle` object?
+.small[
+```Java
+// Circle centred at (0,0) with a radius of 1
+Circle c1 = new Circle(0.0, 0.0, 1.0); 
+// Circle centred at (0,0.5) with a radius of 10
+Circle c2 = new Circle(0.0, 0.5, 10.0);
+  ```
+]
+Before we were using the _default constructor_.
+---
+class: middle,wide
+
+### Accessors and Mutators
+.small[
+```Java
+  public double getX() {
+    return this.x;
+  }
+
+  public void setX(double x) {
+    this.x = x;
+  }
+  ```
+]
+
+---
+class: middle, wide
+Consider a point `x` and `y`.
+.small[
+```Java
+double cX = c.getX();
+double cY = c.getY();
+double r = c.getR();
+```
+]
+.tiny[
+```Java
+boolean isInCircle = ((x - cX) * (x - cX) + (y - cY) * (y - cY)) <= r * r;
+```
+]
+---
+class: middle,center
+
+## Tell, Don't Ask
+.small[
+```Java
+boolean isInCircle = c.contains(x, y);
+```
+]
+---
+class: middle,center
+
+## Class Fields and Methods
+
+Java keyword `static`
+
+---
+class: middle,wide
+
+## Composition
+
+Can we improve on the encapsulation of our `Circle` class? 
+
+What about how we represent the `Point`?
+
+---
+class: middle,wide
+
+## Aliasing
+.small[
+```Java
+Point p = new Point(0, 0);
+Circle c1 = new Circle(p, 1);
+Circle c2 = new Circle(p, 4);
+```
+]
+
+Suppose we want to move `c1` to be centered at $(1,1)$
+
+.small[
+```Java
+p.moveTo(1, 1); // c1 and c2 move!
+```
+]
+---
+class: middle,center
+
+## Inheritance
+
+In Java, we use the `extends` keyword.
+
+---
+class: middle,wide
+
+## Run-Time Type
+
+If `ColoredCircle` $<:$ `Circle`
+
+.small[```Java
+ColoredCircle c = new Circle(p, 0); // error
+Circle c = new ColoredCircle(p, 0, blue); // OK
+```]
+
+---
+class: middle,center
+
+## java.lang.Object
+
+###The mother of all classes!
+
+Now a chance to have a look at the [java documentation!](https://docs.oracle.com/en/java/javase/11/docs/api/index.html)
+
+---
+class: middle,center
+
+## java.lang.Object
+
+We will discuss two methods:
+
+`toString()`
+
+`equals(Object obj)`
+
+---
+class: middle,center
+
+## Overriding
+
+`@Override`
+---
+class: middle,wide
+Consider the function `say` below:
+.small[
+```Java
+void say(Object obj) {
+	System.out.println("Hi, I am " + obj.toString());
+}
+```
+]
+---
+class: middle,wide
+```Java
+Point p = new Point(0, 0);
+say(p);
+Circle c = new Circle(p, 4);
+say(c);
+```
+
+---
+class: middle,center
+
+# Polymorphism
+
+### _many_ _forms_
+
+---
+class: bottom
+
+.tiny[
+Version: v1.0
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+    slideNumberFormat: 'CS2030 AY20/21 ST Part 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>
