@@ -6,7 +6,7 @@ nav:
       - 1. Program and Compiler: '01-compiler.md'
       - 2. Variable and Type: '02-type.md'
       - 3. Functions: '03-function.md'
-    - OOP (04-11):
+    - OOP (04-16):
       - 4. Encapsulation: '04-encapsulation.md'
       - 5. Information Hiding: '05-infohiding.md'
       - 6. Tell, Don't Ask: '06-tell-dont-ask.md'
@@ -20,7 +20,7 @@ nav:
       - 14. Abstract Class: '14-abstract.md'
       - 15. Interface: '15-interface.md'
       - 16. Wrapper Class: '16-wrapper.md'
-    - Types (17-24):
+    - Types (17-19):
       - 17. Casting: '17-casting.md'
       - 18. Variance: '18-variance.md'
       - 19. Exception: '19-exception.md'
