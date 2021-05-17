@@ -20,15 +20,15 @@ nav:
       - 14. Abstract Class: '14-abstract.md'
       - 15. Interface: '15-interface.md'
       - 16. Wrapper Class: '16-wrapper.md'
-    - Types (17-19):
+    - Types (17-24):
       - 17. Casting: '17-casting.md'
       - 18. Variance: '18-variance.md'
       - 19. Exception: '19-exception.md'
-    #   - 20. Generics: '20-generics.md'
-    #   - 21. Type Erasure: '21-erasure.md'
-    #   - 22. Unchecked Warnings: '22-unchecked.md'
-    #   - 23. Wildcards: '23-wildcard.md'
-    #   - 24. Type Inference: '24-inference.md'
+      - 20. Generics: '20-generics.md'
+      - 21. Type Erasure: '21-erasure.md'
+      - 22. Unchecked Warnings: '22-unchecked.md'
+      - 23. Wildcards: '23-wildcard.md'
+      - 24. Type Inference: '24-inference.md'
     # - Functional (25-33):
     #   - 25. Immutability: '25-immutability.md'
     #   - 26. Nested Classes: '26-nested-classes.md'
