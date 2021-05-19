@@ -71,7 +71,7 @@ Consider the following two snippets, which will compile perfectly, but will lead
 ```Java
 GetAreable[] circles = new GetAreable[] {
   new Circle(new Point(1, 1), 2),
-  new Square(new Point(1, 1), 5)
+  new Square(5)
 };
 
 Circle c2 = (Circle) findLargest(circles);

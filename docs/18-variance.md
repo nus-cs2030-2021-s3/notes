@@ -73,7 +73,7 @@ By making array covariant, however, Java opens up the possibility of run-time er
 
 Consider the following code:
 ```Java
-Integer[] intArray = new Integer[2] {
+Integer[] intArray = new Integer[] {
   new Integer(10), new Integer(20)
 };
 Object[] objArray;
