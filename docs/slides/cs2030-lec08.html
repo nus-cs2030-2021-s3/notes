@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030 AY20/21 Special Term Part 1</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030
+
+### Programming Methodology II
+---
+class: middle, center
+
+## Lecture 8
+
+### 7 June 2021
+---
+class: middle
+
+### Announcements
+
+- Only one lab this week (Lab 7)
+- Mock PE (in second lab session)
+- Practical Examination this Saturday 
+- You should have received a zoom invigilation link
+- And your pe node account and private password
+
+---
+class: middle
+	
+## Practical Examination
+### 12-June-2021, Saturday, 10:00 AM - 12:00 (Duration: 120 minutes)
+
+---
+class: middle
+	
+### Practical Examination
+
+- Online using PE Nodes
+- Instructions to come
+- Proctored via Zoom / Screen Recording
+
+---
+class: middle
+	
+### Practical Examination Scope
+
+- Units 0 - 31
+- Labs 1 - 6
+
+---
+class: middle
+
+### `EagerList<T>`
+
+```Java
+class EagerList<T> {
+  private T head;
+  private EagerList<T> tail;
+   :
+}
+```
+  
+---
+class: middle, wide
+
+### `generate` and `iterate`
+.tiny[
+```Java
+public static <T> EagerList<T> generate(T t, int size) {
+  if (size == 0) {
+    return empty();
+  }
+  return new EagerList<>(t, generate(t, size - 1));
+}
+
+public static <T> EagerList<T> iterate(T init, 
+                                       BooleanCondition<? super T> cond, 
+                                       Transformer<? super T, ? extends T> op) {
+  if (!cond.test(init)) {
+    return empty();
+  }
+  return new EagerList<>(init, iterate(op.transform(init), cond, op));
+}
+```
+]
+---
+class: middle
+
+### `map` and `filter`
+.tiny[
+```Java
+public <R> EagerList<R> map(Transformer<? super T, ? extends R> mapper) {
+  return new EagerList<>(mapper.transform(this.head()), 
+                                          this.tail().map(mapper));
+}
+
+public EagerList<T> filter(BooleanCondition<? super T> cond) {
+  if (cond.test(this.head())) {
+    return new EagerList<>(this.head(), this.tail().filter(cond));
+  }
+  return this.tail().filter(cond);
+}
+```
+]
+---
+class: middle
+
+.small[
+```java
+EagerList<Integer> l = EagerList
+    .iterate(1, i -> i < 10, i -> i + 1) 
+    .filter(i -> i % 3 == 0)  
+    .map(i -> i * 2);  
+l.head();        
+l.tail().head(); 
+l.tail().tail().head();
+```
+]
+---
+class: middle
+## What if we wanted to handle an infinite data structure?
+.small[
+``` Java
+EagerList.iterate(1, i -> i > 0, i -> i + 1); // infinite loop
+```
+]
+---
+class: middle
+
+### `InfiniteList<T>`
+
+.small[
+```java
+class InfiniteList<T> {
+  private Producer<T> head;
+  private Producer<InfiniteList<T>> tail;
+   :
+}
+```
+]
+
+
+---
+class: middle, wide
+### `generate` and `iterate`
+
+.tiny[
+```Java
+public static <T> InfiniteList<T> generate(Producer<T> producer) {
+    return new InfiniteList<T>(producer,
+      () -> generate(producer));
+}
+
+public static <T> InfiniteList<T> iterate(T init, Transformer<T, T> next) {
+    return new InfiniteList<T>(() -> init,
+      () -> iterate(next.transform(init), next));
+  }
+```
+]
+---
+class: middle, wide
+
+.tiny[
+```Java
+InfiniteList<Integer> ones = InfiniteList.generate(() -> 1); // 1, 1, 1, 1, ....
+InfiniteList<Integer> evens = InfiniteList.iterate(0, x -> x + 2); // 0, 2, 4, 6, ...
+evens.head(); // -> 0
+evens = evens.tail(); 
+evens.head(); // -> 2
+```
+]
+---
+class: middle, wide
+### `map`
+
+.tiny[
+```Java
+public <R> InfiniteList<R> map(Transformer<? super T, ? extends R> mapper) {
+  return new InfiniteList<>(
+      () -> mapper.transform(this.head()),
+    () -> this.tail().map(mapper));
+}
+```
+]
+---
+class: middle, wide
+
+.tiny[
+```Java
+InfiniteList<Integer> evens = InfiniteList.iterate(0, x -> x + 2); // 0, 2, 4, 6, ...
+evens.map(x -> x + 1).map(x -> x * 2).head(); // 2
+evens.map(x -> x + 1).map(x -> x * 2).head().head(); // 6
+evens.map(x -> x + 1).map(x -> x * 2).head().head().head(); // 10
+```
+]
+---
+class: middle, wide
+### `filter` - a first pass
+
+.tiny[
+```Java
+// wrong
+public InfiniteList<T> filter(BooleanCondition<? super T> cond) {
+  if (cond.test(this.head())) {
+    return new InfiniteList<>(this.head, () -> this.tail().filter(cond));
+  }
+  return this.tail().filter(cond);
+}
+```
+]
+---
+class: middle, wide
+### This version is not very lazy!
+
+- `cond.test(this.head())` is eager. It computes the head to test if it passes the given condition.
+
+- `return this.tail().filter(cond);` is eager. It produces the tail to recursively filter it.
+---
+class: middle, wide
+### `filter`
+
+.tiny[
+```Java
+public InfiniteList<T> filter(BooleanCondition<? super T> cond) {
+  Producer<T> newHead = () -> cond.test(this.head()) ? this.head() : null;
+  return new InfiniteList<>(newHead, () -> this.tail().filter(cond));
+}
+```
+]
+
+---
+class: middle, wide
+### `filter`
+.tiny[
+```Java
+public T head() {
+  T h = this.head.produce();
+   return h == null ? this.tail.produce().head() : h;  
+}
+
+public InfiniteList<T> tail() {
+  T h = this.head.produce();
+  return h == null ? this.tail.produce().tail() : this.tail.produce();  
+}
+```
+]
+---
+class: middle, wide
+
+### Using `null` to represent a missing value is not a great design...
+
+Maybe we should use `Maybe<T>`? 
+
+This implementation doesn't use memoisation either. Maybe we should use `Lazy<Maybe<T>>`?
+
+If only you had a lab coming up 👀
+---
+class: middle 
+
+.small[
+|CS2030S | java.util.function |
+|--------|-------------------|
+|`BooleanCondition<T>::test` | `Predicate<T>::test` |
+|`Producer<T>::produce`      | `Supplier<T>::get`   |
+|`Transformer<T,R>::transform` | `Function<T,R>::apply` |
+|`Transformer<T,T>::transform` | `UnaryOp<T>::apply` |
+|`Combiner<S,T,R>::combine` | `BiFunction<S,T,R>::apply` |
+]
+
+---
+class: middle 
+
+.small[
+| CS2030S               | Java version      |
+|-----------------------|-------------------|
+|`Maybe<T>`             | `java.util.Optional<T>`      |
+|`Lazy<T>`              | N/A                          |
+|`InfiniteList<T>`      | `java.util.stream.Stream<T>` |
+]
+---
+class: middle center
+
+# Streams
+
+(in Java)
+
+---
+class: middle center
+
+### A stream pipeline starts with a *data source*, then *intermediate operations*, and finally a *terminal operation*.
+
+---
+class: middle wide
+
+## Data sources
+
+- Static factory methods `of`, `generate`, `iterate`
+
+- Convert an array into a Stream using `Arrays::stream`
+
+- Convert a List instance into a Stream using `List::stream`
+---
+class: middle
+
+## Terminal Operations
+
+- `forEach`
+
+---
+class: middle
+
+## Intermediate Operations 
+
+- `filter`, `map`
+- `flatMap`
+- `limit`, `takeWhile`
+
+Let's look at some examples...
+
+---
+class: middle wide
+
+## Some operations are *stateful*
+
+- `sorted`
+- `distinct`
+
+---
+class: middle wide
+
+## Peeking into our `Stream`
+
+```Java
+Stream.iterate(0, x -> x + 1)
+      .peek(System.out::println)
+      .takeWhile(x < 5)
+      .forEach(x -> {});
+```
+---
+class: middle
+
+## More Terminal Operations
+- `reduce`
+- `noneMatch`, `allMatch`, `anyMatch`
+- `count`
+
+Let's look at some examples...
+
+---
+class: bottom
+
+.tiny[
+Version: v1.0
+
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+	slideNumberFormat: 'CS2030 AY20/21 ST Part 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>
