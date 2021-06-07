@@ -268,7 +268,7 @@ If only you had a lab coming up 👀
 class: middle 
 
 .small[
-|CS2030S | java.util.function |
+|CS2030  | java.util.function |
 |--------|-------------------|
 |`BooleanCondition<T>::test` | `Predicate<T>::test` |
 |`Producer<T>::produce`      | `Supplier<T>::get`   |
@@ -281,7 +281,7 @@ class: middle
 class: middle 
 
 .small[
-| CS2030S               | Java version      |
+| CS2030                | Java version      |
 |-----------------------|-------------------|
 |`Maybe<T>`             | `java.util.Optional<T>`      |
 |`Lazy<T>`              | N/A                          |
@@ -343,7 +343,7 @@ class: middle wide
 ```Java
 Stream.iterate(0, x -> x + 1)
       .peek(System.out::println)
-      .takeWhile(x < 5)
+      .takeWhile(x -> x < 5)
       .forEach(x -> {});
 ```
 ---
