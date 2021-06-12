@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030 AY20/21 Special Term Part 1</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030
+
+### Programming Methodology II
+---
+class: middle, center
+
+## Lecture 10
+
+### 14 June 2021
+---
+class: middle
+
+### Announcements
+
+- PE is still being marked
+- Lab 8 is out today
+- It is the last lab! (yay?)
+
+---
+class: middle
+
+### Lab 8
+
+- Officially due Friday 18th of June 23:59:59
+- I will waive the late penalty to Sunday 20th of June 23:59:59
+
+---
+class: middle
+	
+## Final Examination
+### 18-June-2021, Saturday, 09:00 AM - 11:00 (Duration: 120 minutes)
+
+---
+class: middle
+
+### Final
+
+- Online using LumiNUS Quiz
+- Proctored via Zoom / Screen Recording
+- Open book (printed materials only)
+
+---
+class: middle
+	
+### Final
+
+Scope: _Everything_
+
+- Units 0 - 36
+- Lecture 1 - 10
+- Recitation 1 - 5
+- Labs 1 - 7
+
+---
+class: middle
+
+# Parallel Streams
+
+---
+class: middle wide
+.tiny[
+```Java
+IntStream.range(2_030_000, 2_040_000)
+         .filter(x -> isPrime(x))
+         .forEach(System.out::println);
+
+IntStream.range(2_030_000, 2_040_000)
+         .filter(x -> isPrime(x))
+         .parallel()
+         .forEach(System.out::println);
+```
+]
+
+---
+class: middle wide
+
+# Parallelising Reduce
+
+.small[
+```Java
+Stream.of(1,2,3,4).reduce(1, (x, y) -> x * y, 
+                                   (x, y) -> x * y);
+```
+]
+
+where the `identity` is `1`, the `combiner` is `(x, y) -> x * y`, and the `accumulator` is `(x, y) -> x * y`
+
+---
+class: middle wide
+
+# Parallelising Reduce
+
+- `combiner.apply(identity, i)` must be equal to `i`.
+
+- The `combiner` and the `accumulator` must be associative
+
+- The `combiner` and the `accumulator` must be compatible
+
+---
+class: middle, center
+
+## Synchronous Programming
+
+---
+class: middle, wide
+
+When we invoke a method in Java, we expect the method to return us a value when it is done. 
+
+We say that the method **blocks** until it returns. Such a programming model is known as synchronous programming.
+
+---
+class: middle, center
+
+## Threads
+
+---
+class: middle, center
+
+## `java.lang.Thread`
+
+---
+class: middle, wide
+
+.small[
+```Java
+new Thread(() -> {
+    for (int i = 1; i < 100; i += 1) {
+      System.out.print("_");
+    }
+  }).start();
+
+  new Thread(() -> {
+    for (int i = 2; i < 100; i += 1) {
+      System.out.print("*");
+    }
+  }).start();
+```
+]
+---
+class: middle, wide
+
+.small[
+```Java
+System.out.println(Thread.currentThread().getName());
+new Thread(() -> {
+  System.out.print(Thread.currentThread().getName());
+  for (int i = 1; i < 100; i += 1) {
+    System.out.print("_");
+  }
+}).start();
+
+new Thread(() -> {
+  System.out.print(Thread.currentThread().getName());
+  for (int i = 2; i < 100; i += 1) {
+    System.out.print("*");
+  }
+}).start();
+```
+]
+---
+class: middle, wide
+
+.tiny[
+```Java
+Stream.of(1, 2, 3, 4)
+    .parallel()
+    .reduce(0, (x, y) -> { 
+        System.out.println(Thread.currentThread().getName()); 
+        return x + y; 
+    });
+```
+]
+
+
+---
+class: middle, wide
+
+.tiny[
+```Java
+Thread findPrime = new Thread(() -> {
+    System.out.println(
+        Stream.iterate(2, i -> i + 1)
+            .filter(i -> isPrime(i))
+            .limit(1_000_000L)
+            .reduce((x, y) -> y)
+            .orElse(null));
+  });
+  
+  findPrime.start();
+  ```
+  ]
+---
+class: middle, wide
+
+.tiny[
+```Java
+  while (findPrime.isAlive()) {
+    try {
+      Thread.sleep(1000);
+      System.out.print(".");
+    } catch (InterruptedException e) {
+      System.out.print("interrupted");
+    }
+  } 
+  ```
+]
+---
+class: middle, center
+## Asynchronous Programming
+
+---
+class: middle
+
+### Drawback of Programming with `Thread` Directly
+
+- Overhead
+- Exception handling?
+- Not easy to pass information around
+
+---
+class: middle wide
+
+.tiny[
+```Java
+int foo(int x) {
+    int a = taskA(x);
+    int b = taskB(a);
+    int c = taskC(a);
+    int d = taskD(a);
+    int e = taskE(b, c)
+    return e;
+}
+```
+]
+
+---
+class: middle wide
+
+.tiny[
+```Java
+Maybe<Integer> foo(int x) {
+    Maybe<Integer> a = Maybe.of(x);
+    Maybe<Integer> b = a.flatMap(i -> taskB(i));
+    Maybe<Integer> c = a.flatMap(i -> taskC(i));
+    Maybe<Integer> d = a.flatMap(i -> taskD(i));
+    Maybe<Integer> e = b.combine(c, (i, j) -> taskE(i, j));
+    return e;
+}
+```
+]
+
+---
+class: middle wide
+
+.tiny[
+```Java
+Lazy<Integer> foo(int x) {
+    Lazy<Integer> a = Maybe.of(x);
+    Lazy<Integer> b = a.flatMap(i -> taskB(i));
+    Lazy<Integer> c = a.flatMap(i -> taskC(i));
+    Lazy<Integer> d = a.flatMap(i -> taskD(i));
+    Lazy<Integer> e = b.combine(c, (i, j) -> taskE(i, j));
+    return e;
+}
+```
+]
+
+---
+class: middle, centre
+
+## Introducing
+
+`java.util.concurrent.CompletableFuture`
+---
+class: middle, wide
+
+.tiny[
+```Java
+CompletableFuture<Integer> foo(int x) {
+    CompletableFuture<Integer> a = CompletableFuture.completedFuture(x);
+    CompletableFuture<Integer> b = a.thenComposeAsync(i -> taskB(i));
+    CompletableFuture<Integer> c = a.thenComposeAsync(i -> taskC(i));
+    CompletableFuture<Integer> d = a.thenComposeAsync(i -> taskD(i));
+    CompletableFuture<Integer> e = b.thenCombineAsync(c, (i, j) -> taskE(i, j));
+    return e;
+}
+```
+]
+---
+class: middle, wide
+
+- `thenApply`, which is analogous to map
+- `thenCompose`, which is analogous to flatMap
+- `thenCombine`, which is analogous to combine
+
+---
+class: middle, wide
+
+.small[
+```Java
+int findIthPrime(int i) {
+    return Stream
+        .iterate(2, x -> x + 1)
+        .filter(x -> isPrime(x))
+        .limit(i)
+        .reduce((x, y) -> y)
+        .orElse(0);
+}
+```
+]
+---
+class: middle, wide
+
+.small[
+```Java
+CompletableFuture.<Integer>supplyAsync(() -> null)
+    .thenApply(x -> x + 1)
+    .join();
+```
+]
+
+---
+class: middle, wide
+.small[
+```Java
+CompletableFuture.<Integer>supplyAsync(() -> null)
+    .thenApply(x -> x + 1)
+    .handle((t, e) -> (e == null) ? t : 0)
+    .join();
+    ```
+]
+---
+class: middle, wide
+
+.tiny[
+```Java
+CompletableFuture<Integer> ith = CompletableFuture.supplyAsync(() -> findIthPrime(i));
+CompletableFuture<Integer> jth = CompletableFuture.supplyAsync(() -> findIthPrime(j));
+CompletableFuture<Integer> diff = ith.thenCombine(jth, (x, y) -> x - y);
+diff.join()
+```
+]
+---
+class: bottom
+
+.tiny[
+Version: v1.0
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+	slideNumberFormat: 'CS2030 AY20/21 ST Part 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>
