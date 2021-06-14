@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030 AY20/21 Special Term Part 1</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030
+
+### Programming Methodology II
+---
+class: middle, center
+
+## Lecture 6
+
+### 31 May 2021
+---
+class: middle
+	
+### Announcements
+
+- Lab Grading
+- Midterm Grading / Answers
+- Labs
+
+---
+class: middle
+
+### Can't mix array and generics
+
+.small[
+```Java
+new Pair<String,Integer>[2]; // error
+new Pair<S,T>[2]; // error
+new T[2]; // error
+```
+]
+
+
+---
+
+class: middle
+
+### Upper-Bounded Wildcard
+
+```Java
+Array<? extends Shape>  
+```
+
+`?` can be substituted by a subtype of `Shape`
+
+---
+class: middle
+
+- Covariance: if `S` <: `T`, then  
+     `A<? extends S>` <: `A<? extends T>`
+
+- For any type `S`, `A<S>` <: `A<? extends S>`
+
+---
+class: middle
+
+### Lower-Bounded Wildcard
+
+```Java
+Array<? super Shape>  
+```
+
+`?` can be substituted by a supertype of `Shape`
+
+---
+class: middle
+
+- Contravariance: if `S` <: `T`, then  
+     `A<? super T>` <: `A<? super S>`
+
+- For any type `S`, `A<S>` <: `A<? super S>`
+
+---
+class: middle
+
+## PECS
+
+Producer `extends`; Consumer `super`
+
+---
+class: middle
+
+### Unbounded Wildcard
+
+```Java
+Array<?>  
+```
+
+`?` can be substituted by a type
+
+---
+class: middle
+
+- For any type S, `A<S>` <: `A<?>`
+- For any type S, `A<? super S>` <: `A<?>`
+- For any type S, `A<? extends S>` <: `A<?>`
+
+---
+class: middle
+
+### Diamond Operator `<>`
+
+.small[
+```Java
+Pair<String,Integer> p = new Pair<>();
+```
+]
+
+---
+class: middle
+
+### Type Inference
+
+Infer type argument automatically.  If there are multiple types that match, pick the _most specific one_.
+
+---
+
+class: middle
+
+# Immutability
+
+### Lets revisit our `Point` and `Circle`
+
+---
+class: middle,center
+
+# Recall our problem with `aliasing`
+
+---
+class: middle,wide
+
+```Java
+Point p = new Point(0, 0);
+Circle c1 = new Circle(p, 1);
+Circle c2 = new Circle(p, 4);
+c1.moveTo(1, 1); // C2 is affected!
+```
+---
+class: middle,wide
+
+```Java
+Point p1 = new Point(0, 0);
+Circle c1 = new Circle(p1, 1);
+
+Point p2 = new Point(0, 0);
+Circle c2 = new Circle(p2, 4);
+
+c1.moveTo(1, 1); // C2 not affected...
+// but needed more resources!
+```
+---
+class: middle,center
+
+# Introducing our immutable `Point` and `Circle`
+
+---
+class: middle, wide
+
+```Java
+Point p = new Point(0, 0);
+Circle c1 = new Circle(p, 1);
+Circle c2 = new Circle(p, 4);
+c1.moveTo(1, 1); // c1 remains unchanged
+```
+---
+class: middle
+
+## Advantages
+### Ease of Understanding
+### Enabling Safe Sharing of Objects
+### Enabling Safe Sharing of Internals
+### Enabling Safe Concurrent Execution
+
+---
+class: middle
+
+# Nested Classes
+
+.small[
+```Java
+class A {
+  private class B {
+      :
+  }
+}
+```
+]
+
+---
+class: middle, wide
+### Inner Class
+.small[
+```Java
+class A {
+  private int x;
+  static int y;
+
+  class B {
+    void foo() {
+      x = 1; // accessing x from A is OK
+      y = 1; // accessing y from A is OK
+    }
+  }
+}
+```
+]
+
+---
+class: middle, wide
+### Static Nested Class
+.small[
+```Java
+class A {
+  private int x;
+  static int y;
+
+  static class C {
+    void bar() {
+      x = 1; // accessing x from A is not OK
+      y = 1; // accessing y is OK
+    }
+  }
+}
+```
+]
+---
+class: middle, wide
+
+.small[
+```Java
+class A {
+  private int x;
+ 
+  class B {
+    void foo() {
+      this.x = 1; // error
+    }
+  }
+ }
+ ```
+]
+
+---
+class: middle, wide
+
+.small[
+```Java
+class A {
+  private int x;
+ 
+  class B {
+    void foo() {
+      A.this.x = 1; // ok
+    }
+  }
+ }
+ ```
+]
+
+---
+class: middle, wide
+### Local classes
+ .tiny[
+```Java
+ void sortNames(List<String> names) {
+
+  class NameComparator implements Comparator<String> {
+    public int compare(String s1, String s2) {
+      return s1.length() - s2.length();
+    }
+  }
+
+  names.sort(new NameComparator());
+}
+```
+]
+
+---
+class: middle, wide
+### Scoping in local classes
+.tiny[
+```Java
+class A {
+  int x = 1;
+
+  void f() {
+    int y = 1;
+
+    class B {
+      void g() {
+        x = y; // accessing x and y is OK.
+      }
+    }
+
+    new B().g();
+  }
+}
+```
+]
+---
+class: middle, wide
+
+.tiny[
+```Java
+interface C { void g(); }
+
+class A {
+  int x = 1;
+
+  C f() {
+    int y = 1;
+
+    class B implements C {
+      void g() {
+        x = y; // accessing x and y is OK.
+      }
+    }
+
+    B b = new B();
+    return b;
+  }
+}
+```
+]
+
+---
+class: middle, wide
+
+.tiny[
+```Java
+A a = new A();
+C b = a.f();
+b.g();
+```
+]
+
+### Variable Capture
+
+The local class makes a copy of local variables inside itself. We say that a local class **captures** the local variables.
+---
+class: middle, wide
+
+.tiny[
+```Java
+void sortNames(List<String> names) {
+  boolean ascendingOrder = true;
+  class NameComparator implements Comparator<String> {
+    public int compare(String s1, String s2) {
+      if (ascendingOrder)
+        return s1.length() - s2.length();
+      else
+        return s2.length() - s1.length();
+    }
+  }
+
+  ascendingOrder = false;
+  names.sort(new NameComparator());
+}
+```
+]
+---
+class: middle, wide
+### Effectively Final
+
+Java only allows a local class to access variables that are explicitly declared final or implicitly final (or effectively final). 
+An implicitly final variable does not change after initialisation. 
+
+---
+class: middle, wide
+### Anonymous classes
+
+.small[
+```Java
+names.sort(new Comparator<String>() {
+  public int compare(String s1, String s2) {
+    return s1.length() - s2.length();
+ }
+});
+```
+]
+---
+class: middle, wide
+### Anonymous classes
+.small[
+```Java
+Comparator<String> cmp = new Comparator<String>() {
+  public int compare(String s1, String s2) {
+    return s1.length() - s2.length();
+  }
+};
+names.sort(cmp);
+```
+]
+
+---
+
+class: middle
+
+# What is a function?
+
+- no side effects
+- referential transparency
+
+---
+class: middle
+
+# Pure Functions
+
+No side effects i.e. don't:
+- print to the screen
+- write to files
+- throw exceptions
+- change other variables
+- modify the values of the arguments
+
+---
+class: middle
+```Java
+int square(int i) {
+  return i * i;
+}
+  
+int add(int i, int j) {
+  return i + j;
+}
+```
+---
+
+class: middle
+```Java
+int div(int i, int j) {
+  return i / j;
+}
+
+int incrCount(int i) {
+  return this.count + i;
+}
+```
+---
+class: bottom
+
+.tiny[
+Version: v1.0
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+  slideNumberFormat: 'CS2030 AY20/21 ST Part 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030 AY20/21 Special Term Part 1</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030
+  
+### Programming Methodology II
+---
+class: middle, center
+  
+## Lecture 3
+  
+### 17 May 2021
+---
+class: middle
+
+### Announcements
+
+- Recitation 1 guide is up
+- Labs going online
+- Lab 1 is coming at 2pm today
+- Office hours: Friday 1 - 2pm (by Appointment)
+
+---
+class: middle
+
+## Plagiarism
+
+NUS has a zero-tolerance policy on plagiarism. 
+
+**Your code should be your own.** We encourage with discussion wth your peers but ultimately all submitted work needs to be your own.
+
+---
+class: middle,center
+
+## Inheritance
+
+In Java, we use the `extends` keyword.
+
+---
+class: middle,center
+
+## java.lang.Object
+
+###The mother of all classes!
+
+---
+class: middle,center
+
+## java.lang.Object
+
+We already talked about the `toString()` method
+
+Showed how you could override it in a subclass
+
+---
+class: middle,center
+
+# Polymorphism
+
+### _many_ _forms_
+---
+class: middle,center
+
+# Polymorphism
+
+`equals(Object obj)`
+---
+class: middle,center
+
+### But this is a lot of power, and with great power...
+
+### Lets consider an example
+
+---
+class: middle, wide
+
+.small[
+```Java
+@Override
+public boolean equals(Object obj) {
+  if (obj instanceof Circle) {
+    Circle circle = (Circle) obj;
+    return (circle.c.equals(this.c) 
+            && circle.r == this.r);
+  }
+  return false;
+}
+```
+]
+
+---
+class: middle,center
+
+# Liskov Substitution Principle (LSP)
+
+Let $\phi(x)$ be a property provable about objects $x$ of type $T$. Then $\phi(y)$ should be true for objects $y$ of type $S$ where $S <: T$.
+
+---
+class: middle,center
+
+# Liskov Substitution Principle (LSP)
+
+If $S$ is a subclass of $T$, then an object of type $T$ can be replaced by that of type $S$ without changing the _desirable property_ of the program
+---
+class: middle,center
+
+# Liskov Substitution Principle (LSP)
+
+Still too abstract? Let's look at an example...
+
+
+---
+class: middle,wide
+
+Imagine we have a class `Module`.
+
+It has a method called `marksToGrade` which takes in a `double` and returns the grade 'A', 'B', 'C', or 'F' as a char
+
+---
+class: middle,wide
+.small[
+```Java
+void displayGrade(Module m, double marks) {
+  char grade = m.marksToGrade(marks);
+  if (grade == 'A')) {
+      System.out.println("well done");
+  else if (grade == 'B') {
+      System.out.println("good");
+  else if (grade == 'C') {
+      System.out.println("ok");
+  } else {
+      System.out.println("retake again");
+  }
+}
+```
+]
+
+---
+class: middle,wide
+
+Sometime later someone creates a `CSCUModule` that inherits from `Module`
+
+It overrides `marksToGrade` such that it now returns only 'S' and 'U'. What about `displayGrade`?
+
+---
+class: middle,center
+
+## How can we prevent people inheriting from our code?
+
+We can use the java keyword `final` 
+
+For example `java.lang.Math`
+---
+class: middle,wide
+
+.small[
+```Java
+double findLargest(Circle[] array) {
+  double maxArea = 0;
+  for (Circle curr : array) {
+    double area = curr.getArea();
+    if (area > maxArea) {
+      maxArea = area;
+    }
+  }
+  return maxArea;
+}
+```
+]
+Works for Circle but what about `Square`, and `Rectangle` classes?
+---
+class: middle,center
+
+## Abstract Classes
+
+_"It can't be real!"_
+
+---
+class: middle
+
+.small[
+```Java
+abstract class Shape {
+    private int numOfAxesOfSymmetry ;
+
+    public boolean isSymmetric() {
+        return numOfAxesOfSymmetry > 0;
+    }
+
+    abstract public double getArea();
+}
+```
+]
+---
+class: middle,wide
+
+.small[
+```Java
+double findLargest(Shape[] array) {
+  double maxArea = 0;
+  for (Shape curr : array) {
+    double area = curr.getArea();
+    if (area > maxArea) {
+      maxArea = area;
+    }
+  }
+  return maxShape;
+}
+```
+]
+---
+
+class: middle,center
+
+## Interface
+
+_"What can it do?"_
+
+---
+class: middle,wide
+
+```Java
+interface GetAreable {
+  double getArea();
+}
+```
+---
+class: middle
+
+### Implementing an Interface
+
+.tiny[
+```Java
+class Circle extends Shape implements GetAreable {
+  :
+  public double getArea() {
+    :
+  }
+  :
+}
+```
+]
+---
+class: middle, center
+
+If a class $C$ implements an interface $I$
+
+then $C <: I$ 
+
+---
+class: middle
+
+In Java:
+
+- A class can extend at most one class
+- A class can implement zero or more interfaces
+- An interface can extend zero or more interfaces
+
+---
+class: middle,center
+
+### Concrete vs Abstract
+
+---
+class: bottom
+
+.tiny[
+Version: v1.0
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+  slideNumberFormat: 'CS2030 AY20/21 ST Part 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>
